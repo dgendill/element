@@ -27,7 +27,8 @@
     "lint": "eslint src/**/* test/**/* packages/**/* build/**/* --quiet",
     "pub": "npm run bootstrap && sh build/git-release.sh && sh build/release.sh && node build/bin/gen-indices.js",
     "test": "npm run lint && npm run build:theme && cross-env CI_ENV=/dev/ BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
-    "test:watch": "npm run build:theme && cross-env BABEL_ENV=test karma start test/unit/karma.conf.js"
+    "test:watch": "npm run build:theme && cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
+    "webpack": "webpack"
   },
   "faas": [
     {
@@ -102,7 +103,7 @@
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-cssmin": "^0.2.0",
-    "gulp-sass": "^4.0.2",
+    "gulp-sass": "^5.0.0",
     "highlight.js": "^9.3.0",
     "html-webpack-plugin": "^3.2.0",
     "json-loader": "^0.5.7",
@@ -121,7 +122,7 @@
     "markdown-it-container": "^2.0.0",
     "mini-css-extract-plugin": "^0.4.1",
     "mocha": "^6.0.2",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.1",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss": "^7.0.14",
     "progress-bar-webpack-plugin": "^1.11.0",
@@ -144,5 +145,9 @@
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.11",
     "webpack-node-externals": "^1.7.2"
-  }
+  },
+  "browserslist": [
+    "ie > 9",
+    "last 2 versions"
+  ]
 }
