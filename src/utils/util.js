@@ -46,10 +46,7 @@ export const getValueByPath = function(object, prop) {
 
 export function getPropByPath(obj, path, strict) {
   let tempObj = obj;
-  path = path.replace(/\[(\w+)\]/g, '.$1');
-  path = path.replace(/^\./, '');
-
-  let keyArr = path.split('.');
+  let keyArr = path.match(/(?<!\[')(\w+)(?!'\])|((?<=\[')(.+)(?='\]))/g) || [];
   let i = 0;
   for (let len = keyArr.length; i < len - 1; ++i) {
     if (!tempObj && !strict) break;
