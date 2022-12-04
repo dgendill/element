@@ -46,13 +46,22 @@ export const getValueByPath = function(object, prop) {
 
 export function getPropByPath(obj, path, strict) {
   let tempObj = obj;
-  let keyArr = path.match(/(?<!\[')(\w+)(?!'\])|((?<=\[')(.+)(?='\]))/g) || [];
+  let matcher = /(?:\[['"])(.+)(?=['"]\])|(\w+)(?!['"]\])/g;
+  let match;
+  let keyArr = [];
+  
+  do {
+    match = matcher.exec(path);
+    if (match) { keyArr.push(match[1] || match[0]); }
+  } while (match);
+
   let i = 0;
   for (let len = keyArr.length; i < len - 1; ++i) {
     if (!tempObj && !strict) break;
     let key = keyArr[i];
     if (key in tempObj) {
       tempObj = tempObj[key];
+
     } else {
       if (strict) {
         throw new Error('please transfer a valid prop path to form item!');
